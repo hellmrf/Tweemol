@@ -1,0 +1,14 @@
+{
+  "name": "tweemol",
+  "version": "0.0.1",
+  "description": "Bot que publica uma molécula por dia no Twitter.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Heliton Martins",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
