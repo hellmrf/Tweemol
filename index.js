@@ -1,20 +1,27 @@
-const axios = require('axios');
+const chooseMolecule = require('./src/chooseMolecule');
+// const getStructure = require('./src/getStructure')
+const Wiki = require('./src/wikipedia');
+const Text = require('./src/text');
 
-async function getIntroText(titles) {
-    const response = await axios.get('https://pt.wikipedia.org/w/api.php', {
-        params: {
-            'action': 'query',
-            'format':'json',
-            'prop':'extracts',
-            'titles':titles,
-            'redirects':1,
-            'exintro':1,
-            'explaintext':1,
-        }
-    });
-    const { pages } = response.data.query;
-    const { title, extract } = pages[Object.keys(pages)[0]]
-    
+class Main {
+    constructor(){
+        this.wiki = new Wiki();
+        this.text = new Text();
+    }
+    async start(){
+        const molecule = chooseMolecule();
+        const wikiPage = await this.wiki.getWikiIntroText(molecule);
+        const properties = await this.wiki.getProperties();
+        const image = this.getImage(molecule, properties.image);
+        const tweet = await this.text.prepareSummary(wikiPage.extract, Wiki.getPageLinkByTitle(molecule), molecule);
+        console.log(tweet)
+    }
+
+    // TODO mover isso para src/getStructure.js.
+    getImage(molecule, wiki_image_url){
+        return wiki_image_url ? wiki_image_url : undefined
+    }
 }
 
-getIntroText('Harmalina');
+const mainInstance = new Main();
+mainInstance.start();

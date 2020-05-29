@@ -9,6 +9,9 @@
   "author": "Heliton Martins",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.2"
+    "algorithmia": "^0.3.10",
+    "axios": "^0.19.2",
+    "sbd": "^1.0.18",
+    "twitter-text": "^3.1.0"
   }
 }
