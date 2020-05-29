@@ -1,6 +1,6 @@
 # Discard
 trash/
-#credentials/
+credentials/
 
 # Logs
 logs
