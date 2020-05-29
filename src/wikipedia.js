@@ -20,7 +20,8 @@ class Wiki {
                 'explaintext':1,
                 'formatversion':2,
                 export:1
-            }
+            },
+            "timeout": 10000
         });
         const { query } = response.data;
         const { pageid, title, extract } = query.pages[0]
@@ -39,7 +40,8 @@ class Wiki {
         const drugInfoObject = {}
         for (const elem of drugData) {
             const arr = elem.split(' =').map(sub => sub.trim())
-            drugInfoObject[arr[0]] = arr[1]
+            const idx = arr[0].toLowerCase().replace('imagefile','image');
+            drugInfoObject[idx] = arr[1]
         };
         return drugInfoObject;
     }
