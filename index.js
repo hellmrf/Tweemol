@@ -1,7 +1,8 @@
 const chooseMolecule = require('./src/chooseMolecule');
-const getStructure = require('./src/getStructure');
+const { getStructurePath, clearTempDirectory } = require('./src/images');
 const Wiki = require('./src/wikipedia');
 const Text = require('./src/text');
+
 
 class Main {
     constructor(){
@@ -10,23 +11,32 @@ class Main {
     }
     async start(){
         const molecule = chooseMolecule();
-        // const molecule = "Pepstatin";
         const wikiPage = await this.wiki.getWikiIntroText(molecule);
         const properties = await this.wiki.getProperties();
-        const image = await getStructure(properties.image, properties.smiles, molecule);
+        const imagePath = await getStructurePath(properties.image, properties.smiles, molecule);
         const tweet = await this.text.prepareSummary(wikiPage.extract, Wiki.getPageLinkByTitle(molecule), molecule);
-        console.log("molecule: ", molecule)
-        console.log("tweet: ", tweet)
-        console.log("\nimage:", image)
-        // console.log("smiles", properties.smiles)
-        // console.log("\nproperties:", properties)
+        console.log("Molecule: ".black.bgGreen, molecule);
+        console.log("\nTweet: ".black.bgGreen, tweet);
+        console.log("\nImage:".black.bgGreen, imagePath);
+        // console.log("\nProperties: ".black.bgGreen, properties);
     }
 }
 
-const mainInstance = new Main();
-mainInstance.start();
+(async ()=>{
+    for(let i = 0; i < 10; i++){
+        try{
+            const mainInstance = new Main();
+            await mainInstance.start();
+            clearTempDirectory();
+            break;
+        } catch (err) {
+            console.log(`\n\n\n[[ERRO | MAIN]]: Processo falhou pela ${i+1}ª vez.\n${err}\n\n`);
+        }
+    }
+})();
+
 // const mI = {}
-// for(let i = 0; i < 20; i++){
+// for(let i = 0; i < 50; i++){
 //     mI[i] = new Main();
 //     mI[i].start();
 // }

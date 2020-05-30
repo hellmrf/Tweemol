@@ -22,6 +22,7 @@ class Wiki {
                 export:1
             },
             "timeout": 10000
+            //TODO: em produção, aumentar timeout.
         });
         const { query } = response.data;
         const { pageid, title, extract } = query.pages[0]
@@ -29,21 +30,29 @@ class Wiki {
         return { pageid, title, extract };
     }
 
-    async getProperties(molecule = null) {
+    async getProperties(molecule = null, debug = false) {
         if(!this.verifyIfMoleculeWereInitialized(molecule)) return;
         if(!this.pagetext){
             await this.getWikiIntroText();
         }
         const dataWithoutComments = this.sanitizeData(this.pagetext);
         const dataArray = dataWithoutComments.split('\n').filter(line=>(line.length>0));
-        const drugData = dataArray.filter(line => line.startsWith('|')).map(line => line.substr(2));
-        const drugInfoObject = {}
+        const drugData = dataArray.filter(line => line.startsWith('|')).map(line => line.substr(1));
+        const properties = {image: '', smiles: ''}
+        const propertiesRegex = {
+            image: /(?:^|\s)image(?:l|(?:file)|\d)*\s*=\s*(.*)/gi,
+            smiles: /(?:^|\s)smiles?(?:\s|=)*(.*)/gi
+        }        
+        
         for (const elem of drugData) {
-            const arr = elem.split(' =').map(sub => sub.trim())
-            const idx = arr[0].toLowerCase().replace('imagefile','image');
-            drugInfoObject[idx] = arr[1]
+            for(const propname in propertiesRegex){
+                if(properties[propname]) continue;
+                const regex = propertiesRegex[propname];
+                const match = regex.exec(elem) || [null,null]
+                properties[propname] = match[1];
+            }
         };
-        return drugInfoObject;
+        return (debug === true) ? dataArray : properties;
     }
 
     static getPageLinkByTitle(title) {
