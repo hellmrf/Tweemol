@@ -1,12 +1,16 @@
 {
   "name": "tweemol",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Bot que publica uma molécula por dia no Twitter.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Heliton Martins",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hellmrf/Tweemol"
+  },
   "license": "ISC",
   "dependencies": {
     "algorithmia": "^0.3.10",
