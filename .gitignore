@@ -1,6 +1,7 @@
 # Discard
 trash/
-#credentials/*.json
+credentials/*.json
+node_modules/
 
 # Logs
 logs
