@@ -3,9 +3,10 @@ const twttr = require('twitter-text');
 const sbd = require('sbd');
 const { API_KEY } = require('../credentials/algorithmia.json')
 
+const DEFAULT_LANGUAGE = 'en';
 
 class Text {
-    async prepareSummary(text, link, molecule, lang = 'en'){
+    async prepareSummary(text, link, molecule, lang = DEFAULT_LANGUAGE){
         const tweet = this.buildTweet(text, link, lang);
         if(!this.checkTweetLength(tweet)){
             // Resumir o texto.
@@ -32,7 +33,7 @@ class Text {
         return sbd.sentences(text)[0];
     }
 
-    buildTweet (text, link, lang = 'pt') {
+    buildTweet (text, link, lang = DEFAULT_LANGUAGE) {
         const callToAction = lang==='pt' ? "Saiba mais" : "Know more";
         const tweet = `${text}\n${callToAction}: ${link}`;
         return tweet;
@@ -42,7 +43,7 @@ class Text {
         return (twttr.parseTweet(tweet).weightedLength <= 280);
     }
 
-    getGenericTweet(molecule, link, lang = 'pt'){
+    getGenericTweet(molecule, link, lang = DEFAULT_LANGUAGE){
         if(lang==='pt'){
             return this.buildTweet(`Today's drug is ${molecule}.`, link, lang);
         }else{
