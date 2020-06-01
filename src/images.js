@@ -8,8 +8,8 @@ const sharp = require('sharp');
 
 const googleSearchCredentials = require('../credentials/google-search.json');
 
-// TODO: remover dependência de desenvolvedor
-const colors = require('colors');
+// Dependência de desenvolvimento para colorir as saídas no console
+// const colors = require('colors');
 
 const IMAGES_PATH = path.resolve(__dirname, '../temp_images');
 
@@ -18,12 +18,9 @@ const IMAGES_PATH = path.resolve(__dirname, '../temp_images');
 const getStructurePath = async (wikiImageName, wikiSMILES = null, moleculeName = null) => {
     const URL = await getStructureURL(wikiImageName, moleculeName);
     let path = "";
-    if(!URL && wikiSMILES){
-        // TODO: Desenhar molécula a partir do SMILES
-    } else {
-        const originalImagePath = await downloadImage(URL);
-        path = await convertImageToPNG(originalImagePath);
-    }
+    // TODO: Desenhar molécula a partir do SMILES a URL não for encontrado e o SMILES sim
+    const originalImagePath = await downloadImage(URL);
+    path = await convertImageToPNG(originalImagePath);
     return path;
 }
 
@@ -60,6 +57,7 @@ const convertImageToPNG = async originalImagePath => {
     try {
         await sharp(originalImagePath)
             .png()
+            .flatten({ background: { r: 255, g: 255, b: 255 } })
             .toFile(newPath);
         return newPath;
     } catch (err) {
