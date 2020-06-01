@@ -8,7 +8,7 @@ const sharp = require('sharp');
 
 const googleSearchCredentials = require('../credentials/google-search.json');
 
-const IMAGES_PATH = path.resolve(__dirname, '../temp_images');
+const IMAGES_PATH = path.resolve(__dirname, '../public/temp_images');
 
 /*
     Path -> local address to image file
