@@ -1,6 +1,6 @@
 # Discard
 trash/
-credentials/*.json
+#credentials/*.json
 
 # Logs
 logs
