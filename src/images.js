@@ -14,13 +14,12 @@ const IMAGES_PATH = path.join(__dirname, '../temp_images');
     Path -> local address to image file
     URL  -> web address to image file
 */
-const getStructurePath = async (wikiImageName, wikiSMILES = null, moleculeName = null) => {
+const getStructureImage = async (wikiImageName, wikiSMILES = null, moleculeName = null) => {
     const URL = await getStructureURL(wikiImageName, moleculeName);
-    let path = "";
     // TODO: Desenhar molécula a partir do SMILES a URL não for encontrado e o SMILES sim
-    const originalImagePath = await downloadImage(URL);
-    path = await convertImageToPNG(originalImagePath);
-    return path;
+    const originalImage = await getImageBufferFromURL(URL);
+    const image = await convertImageToPNG(originalImage);
+    return image;
 }
 
 const getStructureURL = async (wikiImageName, moleculeName = null) => {
@@ -39,11 +38,10 @@ const getStructureURL = async (wikiImageName, moleculeName = null) => {
     return wikiImageName;
 };
 
-const downloadImage = async url => {
+const getImageBufferFromURL = async url => {
     try {
-        const response = await imageDownloader.image({url, dest: IMAGES_PATH});
-        const { filename } = response;
-        return filename;
+        const response = await axios.get(url, {responseType: 'arraybuffer'});
+        return Buffer.from(response.data, 'binary');
     }catch (err) {
         console.log("[[ERRO | IMAGE-DOWNLOADER]]\n\n");
         console.log(err);
@@ -51,19 +49,13 @@ const downloadImage = async url => {
     }
 };
 
-const convertImageToPNG = async originalImagePath => {
-    const newPath = originalImagePath.substr(0, originalImagePath.length-4) + "_converted.png";
-    try {
-        await sharp(originalImagePath)
-            .png()
-            .flatten({ background: { r: 255, g: 255, b: 255 } })
-            .toFile(newPath);
-        return newPath;
-    } catch (err) {
-        console.log("[[ERRO | SHARP]]");
-        console.log(err);
-        return;
-    }
+const convertImageToPNG = async originalImage => {
+    // const newPath = originalImagePath.substr(0, originalImagePath.length-4) + "_converted.png";
+    const buffer = await sharp(originalImage)
+        .png()
+        .flatten({ background: { r: 255, g: 255, b: 255 } })
+        .toBuffer();
+    return buffer.toString('base64');;
 };
 
 const getImageURLFromDescriptionPage = async descriptionPageTitle => {
@@ -113,4 +105,4 @@ const clearTempDirectory = () => {
 }
 
 exports.clearTempDirectory = clearTempDirectory;
-exports.getStructurePath = getStructurePath;
+exports.getStructureImage = getStructureImage;
