@@ -8,11 +8,10 @@ class TweetHandler {
         this.Twit = new Twit({...keys, timeout_ms: 60000});
     }
 
-    async post(molecule, status, media) {
-        const media_b64 = fs.readFileSync(media, { encoding: 'base64' });
+    async post(molecule, status, media_data) {
         try{
             // Fazendo upload da imagem
-            const mediaUpload = await this.Twit.post('media/upload', {media_data: media_b64});
+            const mediaUpload = await this.Twit.post('media/upload', {media_data});
 
             // Cadastrando os metadados da imagem
             const media_id = mediaUpload.data.media_id_string;
@@ -28,6 +27,7 @@ class TweetHandler {
         } catch (err) {
             console.log("[[ERRO | TweetHandler.post()]]: ");
             console.log(err);
+            console.log("\n\n\n\n\n\n", media_data);
         }
     }
 }

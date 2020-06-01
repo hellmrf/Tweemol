@@ -1,5 +1,5 @@
 const chooseMolecule = require('./src/chooseMolecule');
-const { getStructurePath, clearTempDirectory } = require('./src/images');
+const { getStructureImage, clearTempDirectory } = require('./src/images');
 const Wiki = require('./src/wikipedia');
 const Text = require('./src/text');
 const TweetHandler = require('./src/TweetHandler');
@@ -14,9 +14,9 @@ class Main {
         const molecule = chooseMolecule();
         const wikiPage = await this.wiki.getWikiIntroText(molecule);
         const properties = await this.wiki.getProperties();
-        const imagePath = await getStructurePath(properties.image, properties.smiles, molecule);
+        const image = await getStructureImage(properties.image, properties.smiles, molecule);
         const tweet = await this.text.prepareSummary(wikiPage.extract, Wiki.getPageLinkByTitle(molecule), molecule);
-        await this.TweetHandler.post(molecule, tweet, imagePath);
+        await this.TweetHandler.post(molecule, tweet, image);
     }
 }
 
