@@ -4,7 +4,6 @@ const Wiki = require('./src/wikipedia');
 const Text = require('./src/text');
 const TweetHandler = require('./src/TweetHandler');
 
-
 class Main {
     constructor(){
         this.wiki = new Wiki();
@@ -17,13 +16,7 @@ class Main {
         const properties = await this.wiki.getProperties();
         const imagePath = await getStructurePath(properties.image, properties.smiles, molecule);
         const tweet = await this.text.prepareSummary(wikiPage.extract, Wiki.getPageLinkByTitle(molecule), molecule);
-        const posting = await this.TweetHandler.post(molecule, tweet, imagePath);
-
-        console.log("Molecule: ".black.bgGreen, molecule);
-        console.log("\nTweet: ".black.bgGreen, tweet);
-        console.log("\nImage:".black.bgGreen, imagePath);
-        // console.log("\nTwit response:".black.bgGreen, posting);
-        // console.log("\nProperties: ".black.bgGreen, properties);
+        await this.TweetHandler.post(molecule, tweet, imagePath);
     }
 }
 
@@ -39,9 +32,3 @@ class Main {
         }
     }
 })();
-
-// const mI = {}
-// for(let i = 0; i < 50; i++){
-//     mI[i] = new Main();
-//     mI[i].start();
-// }

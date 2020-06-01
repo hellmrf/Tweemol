@@ -8,13 +8,12 @@ const sharp = require('sharp');
 
 const googleSearchCredentials = require('../credentials/google-search.json');
 
-// Dependência de desenvolvimento para colorir as saídas no console
-// const colors = require('colors');
-
 const IMAGES_PATH = path.resolve(__dirname, '../temp_images');
 
-// Path -> caminho LOCAL para o arquivo de imagem
-// URL  -> endereço na web do arquivo de imagem
+/*
+    Path -> local address to image file
+    URL  -> web address to image file
+*/
 const getStructurePath = async (wikiImageName, wikiSMILES = null, moleculeName = null) => {
     const URL = await getStructureURL(wikiImageName, moleculeName);
     let path = "";
@@ -46,7 +45,7 @@ const downloadImage = async url => {
         const { filename } = response;
         return filename;
     }catch (err) {
-        // console.log("[[ERRO | IMAGE-DOWNLOADER]]\n\n".white.bgRed);
+        console.log("[[ERRO | IMAGE-DOWNLOADER]]\n\n");
         console.log(err);
         return "";
     }
@@ -61,7 +60,7 @@ const convertImageToPNG = async originalImagePath => {
             .toFile(newPath);
         return newPath;
     } catch (err) {
-        // console.log("[[ERRO | SHARP]]".white.bgRed);
+        console.log("[[ERRO | SHARP]]");
         console.log(err);
         return;
     }
@@ -82,7 +81,7 @@ const getImageURLFromDescriptionPage = async descriptionPageTitle => {
         });
         return response.data.query.pages[0].imageinfo[0].url;
     } catch (err){
-        // console.log("[[ERRO | AXIOS]]".white.bgRed) 
+        console.log("[[ERRO | AXIOS]]") 
         console.log("src/getStructure.js, getImageURLFromDescriptionPage", err);
     }
 }
