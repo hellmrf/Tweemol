@@ -21,8 +21,7 @@ class Wiki {
                 'formatversion':2,
                 export:1
             },
-            "timeout": 10000
-            //TODO: em produção, aumentar timeout.
+            "timeout": 60000
         });
         const { query } = response.data;
         const { pageid, title, extract } = query.pages[0]
