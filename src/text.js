@@ -21,8 +21,6 @@ class Text {
         return tweet;
     }
     async summarizeText(text) {
-        // TODO: para economizar créditos no Algorithmia, desabilitei este método.
-        return "Norethisterone, also known as norethindrone and sold under many brand names, is a progestin medication used in birth control pills, menopausal hormone therapy, and for the treatment of gynecological disorders. Norethisterone was discovered in 1951 and was one of the first progestins to be developed.";
         const algoResponse = await Algorithmia.client(API_KEY)
             .algo("nlp/Summarizer/0.1.8?timeout=300")
             .pipe([text,2]);
@@ -45,9 +43,9 @@ class Text {
 
     getGenericTweet(molecule, link, lang = DEFAULT_LANGUAGE){
         if(lang==='pt'){
-            return this.buildTweet(`Today's drug is ${molecule}.`, link, lang);
-        }else{
             return this.buildTweet(`O fármaco de hoje é ${molecule}.`, link, lang);
+        }else{
+            return this.buildTweet(`Today's drug is ${molecule}.`, link, lang);
         }
             
     }
