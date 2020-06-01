@@ -2,12 +2,14 @@ const chooseMolecule = require('./src/chooseMolecule');
 const { getStructurePath, clearTempDirectory } = require('./src/images');
 const Wiki = require('./src/wikipedia');
 const Text = require('./src/text');
+const TweetHandler = require('./src/TweetHandler');
 
 
 class Main {
     constructor(){
         this.wiki = new Wiki();
         this.text = new Text();
+        this.TweetHandler = new TweetHandler();
     }
     async start(){
         const molecule = chooseMolecule();
@@ -15,9 +17,12 @@ class Main {
         const properties = await this.wiki.getProperties();
         const imagePath = await getStructurePath(properties.image, properties.smiles, molecule);
         const tweet = await this.text.prepareSummary(wikiPage.extract, Wiki.getPageLinkByTitle(molecule), molecule);
+        const posting = await this.TweetHandler.post(molecule, tweet, imagePath);
+
         console.log("Molecule: ".black.bgGreen, molecule);
         console.log("\nTweet: ".black.bgGreen, tweet);
         console.log("\nImage:".black.bgGreen, imagePath);
+        // console.log("\nTwit response:".black.bgGreen, posting);
         // console.log("\nProperties: ".black.bgGreen, properties);
     }
 }
