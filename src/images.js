@@ -3,7 +3,6 @@ const path = require('path');
 const axios = require('axios');
 const google = require('googleapis').google;
 const customSearch = google.customsearch('v1');
-const imageDownloader = require('image-downloader');
 const sharp = require('sharp');
 
 const googleSearchCredentials = require('../credentials/google-search.json');
