@@ -19,7 +19,7 @@
   <p align="center">
     Robô que publica, todos os dias, uma molécula no Twitter contendo as informações extraídas da Wikipédia, um link e a imagem.
     <br />
-    <a href="https://twitter.com/tweemol">Acessar »</a>
+    <a href="https://twitter.com/tweemol" target="_blank">Acessar »</a>
     ·
     <a href="https://github.com/hellmrf/Tweemol/issues">Reportar Bug</a>
     ·
