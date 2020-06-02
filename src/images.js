@@ -94,6 +94,7 @@ const searchImageOnGoogle = async searchTerm => {
 }
 
 const clearTempDirectory = () => {
+    return;
     fs.readdir(IMAGES_PATH, (err, files) => {
         if (err) throw err;
         for (const file of files) {
