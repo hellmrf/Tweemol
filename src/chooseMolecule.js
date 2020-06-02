@@ -1,28 +1,44 @@
+const axios = require('axios');
 const { molecules } = require('../all_molecules.json');
-const fs = require('fs');
-const path = require('path');
+const { key } = require('../credentials/server.json');
 
-const POSTED_ARRAY_PATH = path.resolve(__dirname, '../molecules_posted.json');
+const fetch = require('node-fetch');
+const { URLSearchParams } = require('url');
 
-const chooseMolecule = () => {
-    const posted = readJSON();
+const SERVER_URL = "https://tweemol.ongrade.ml/";
+
+const chooseMolecule = async () => {
+    const posted = await readServer();
     let moleculeOfTheDay
     do {
         const rand = Math.floor(Math.random() * molecules.length);
         moleculeOfTheDay = molecules[rand];
     } 
     while (posted.indexOf(moleculeOfTheDay) > -1);
-    posted.push(moleculeOfTheDay);
-    saveJSON(posted);
     return moleculeOfTheDay;
 }
 
-const readJSON = () => {
-    const data = fs.readFileSync(POSTED_ARRAY_PATH);
-    const { posted } = JSON.parse(data);
-    return posted
+const readServer = async () => {
+    const response = await axios.get(SERVER_URL+"getPostedMolecules/");
+    const { posted } = response.data;
+    console.log(response.data);
+    return posted;
 }
-const saveJSON = (posted) => {
-    fs.writeFileSync(POSTED_ARRAY_PATH, JSON.stringify({ "posted" : posted }));
+const saveServer = async (posted) => {
+    try {
+        const params = new URLSearchParams();
+        params.append('secret_key', key);
+        params.append('posted_molecule', posted);
+        const response = await fetch(SERVER_URL+"addPosted/", {
+            method: 'POST',
+            body: params
+        });
+        if(response.status != 200){
+            console.log("[RETORNO DO SERVIDOR]:",response.status);
+        }
+    } catch (err) {
+        console.log("[ERRO SALVANDO NO SERVIDOR]", err);
+    }
 }
-module.exports = chooseMolecule;
+exports.chooseMolecule = chooseMolecule;
+exports.saveServer = saveServer;
