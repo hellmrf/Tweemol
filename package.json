@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "algorithmia": "^0.3.10",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "googleapis": "^51.0.0",
     "image-downloader": "^4.0.1",
     "node-fetch": "^2.6.1",
