@@ -18,7 +18,7 @@
     "googleapis": "^51.0.0",
     "image-downloader": "^4.0.1",
     "node-fetch": "^2.6.7",
-    "sbd": "^1.0.18",
+    "sbd": "^1.0.19",
     "sharp": "^0.25.3",
     "twit": "^2.2.11",
     "twitter-text": "^3.1.0"
