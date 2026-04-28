@@ -21,8 +21,7 @@
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+[![GPL-3.0 License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- ÍNDICE -->
@@ -135,7 +134,19 @@ Contribuições são o que tornam a comunidade *open-source* um ambiente incrív
 <!-- LICENÇA -->
 ## Licença
 
-Distribuido sob Licensa MIT. Veja [`LICENSE`](./LICENSE.txt) para mais informações.
+Distribuido sob Licença [GPL-3.0](./COPYING).
+
+_As permissões estão condicionadas à disponibilização do código-fonte completo das obras licenciadas e suas modificações, o que inclui obras maiores que utilizem uma obra licenciada, sob a mesma licença. Os avisos de direitos autorais e de licença devem ser preservados. Os contribuidores fornecem uma concessão expressa de direitos de patente._
+
+| Permissões | Condições | Limitações |
+| :--- | :--- | :--- |
+| ✅ Uso comercial | ℹ️ Divulgar o código-fonte | ❌ Responsabilidade corporativa |
+| ✅ Distribuição | ℹ️ Aviso de licença e direitos autorais | ❌ Garantia |
+| ✅ Modificação | ℹ️ Mesma licença | |
+| ✅ Uso de patente | ℹ️ Declarar alterações | |
+| ✅ Uso privado | | |
+
+[Ver a GNU General Public License v3.0 completa »](https://www.gnu.org/licenses/gpl-3.0.html)
 
 
 <!-- CONTACT -->
@@ -157,6 +168,6 @@ Link do projeto: [https://github.com/hellmrf/Tweemol/](https://github.com/hellmr
 [issues-shield]: https://img.shields.io/github/issues/hellmrf/Tweemol.svg?style=flat-square
 [issues-url]: https://github.com/hellmrf/Tweemol/issues
 [license-shield]: https://img.shields.io/github/license/hellmrf/Tweemol.svg?style=flat-square
-[license-url]: https://github.com/hellmrf/Tweemol/blob/master/LICENSE.txt
+[license-url]: https://github.com/hellmrf/Tweemol/blob/master/COPYING
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/helitonmrf
