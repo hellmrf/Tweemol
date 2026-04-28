@@ -12,16 +12,18 @@
     <br />
     <a href="https://twitter.com/tweemol" target="_blank">Acessar »</a>
     ·
-    <a href="https://github.com/hellmrf/Tweemol/issues">Reportar Bug</a>
-    ·
-    <a href="https://github.com/hellmrf/Tweemol/issues">Fazer sugestão</a>
+    <a href="https://wpp.hellmrf.dev.br" target="_blank">Entrar em contato</a>
+
   </p>
 </p>
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
+> [!WARNING]
+> **PROJETO ARQUIVADO**
+>
+> Este projeto não recebe manutenção há mais de 5 anos e foi oficialmente arquivado. O repositório e seu código-fonte são mantidos abertos apenas para fins de registro histórico e portfólio. Funcionalidades que dependem de serviços de terceiros (especialmente a API do Twitter e Algorithmia) muito provavelmente não funcionam mais devido a mudanças nas políticas e versões dessas plataformas ao longo dos anos. Issues e Pull Requests foram desabilitados e não serão monitorados.
+
 [![Stargazers][stars-shield]][stars-url]
-[![GPL-3.0 License][license-shield]][license-url]
+[![GPL-3.0 License](https://img.shields.io/github/license/hellmrf/Tweemol?style=flat-square)][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- ÍNDICE -->
@@ -34,7 +36,6 @@
   * [Pré-requisitos](#pré-requisitos)
   * [Configurando o ambiente](#configurando-o-ambiente)
 * [Uso](#uso)
-* [Contribuindo](#contribuindo)
 * [Licença](#licença)
 * [Contato](#contato)
 
@@ -118,19 +119,6 @@ node index.js
 ```
 
 
-<!-- CONTRIBUINDO -->
-## Contribuindo
-
-Contribuições são o que tornam a comunidade *open-source* um ambiente incrível para aprender, se inspirar e criar. *Qualquer* contribuição que você fizer será **enormemente apreciada**.
-
-1. Crie um fork do Projeto
-2. Crie uma nova branch (`git checkout -b feature/recursoIncrivel`)
-3. Faça o commit das suas alterações (`git add .` e `git commit -m 'Adicionando este incrível recurso.'`)
-4. Envie para o seu Github (`git push origin feature/recursoIncrivel`)
-5. Abra um Pull Request detalhando ao máximo o que você implementou, os problemas que ainda precisam ser resolvidos e o que mais julgar necessário.
-6. Pronto! Você está contribuindo com o mundo *open-source*.
-
-
 <!-- LICENÇA -->
 ## Licença
 
@@ -152,22 +140,17 @@ _As permissões estão condicionadas à disponibilização do código-fonte comp
 <!-- CONTACT -->
 ## Contato
 
-Heliton Martins - [@hellmrf](https://twitter.com/hellmrf) - helitonmrf@gmail.com
+Heliton Martins - [hellmrf.dev.br](https://hellmrf.dev.br) - [helitonmrf@gmail.com](mailto:helitonmrf@gmail.com) - [WhatsApp](https://wpp.hellmrf.dev.br)
 
 Link do projeto: [https://github.com/hellmrf/Tweemol/](https://github.com/hellmrf/Tweemol/)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/hellmrf/Tweemol.svg?style=flat-square
-[contributors-url]: https://github.com/hellmrf/Tweemol/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/hellmrf/Tweemol.svg?style=flat-square
-[forks-url]: https://github.com/hellmrf/Tweemol/network/members
 [stars-shield]: https://img.shields.io/github/stars/hellmrf/Tweemol.svg?style=flat-square
 [stars-url]: https://github.com/hellmrf/Tweemol/stargazers
 [issues-shield]: https://img.shields.io/github/issues/hellmrf/Tweemol.svg?style=flat-square
-[issues-url]: https://github.com/hellmrf/Tweemol/issues
-[license-shield]: https://img.shields.io/github/license/hellmrf/Tweemol.svg?style=flat-square
+[license-shield]: https://img.shields.io/github/license/hellmrf/Tweemol?style=flat-square
 [license-url]: https://github.com/hellmrf/Tweemol/blob/master/COPYING
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/helitonmrf
